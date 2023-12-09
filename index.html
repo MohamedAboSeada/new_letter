@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UT F-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- task website icon -->
+    <link rel="icon" type="image/png" sizes="32x32"
+      href="./assets/images/favicon-32x32.png">
+
+    <!-- task title -->
+    <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+    <!-- adding css -->
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/normalize.css">
+  </head>
+  <body>
+    <!-- start newletter -->
+    <div class="newsletter">
+      <!-- start container -->
+      <div class="container">
+        <!-- start image -->
+        <div class="image">
+          <img src="assets/images/illustration-sign-up-mobile.svg">
+        </div>
+        <!-- end image -->
+        <!-- start content -->
+        <div class="content">
+          <div class="text">
+            <!-- header text -->
+            <h1>Stay updated!</h1>
+            <p>Join 60,000+ product managers receiving monthly updates on:</p>
+            
+            <!-- start list -->
+            <div class="list">
+              <div class="ele">
+                <div class="icon"></div>
+                <p>Product discovery and building what matters</p>
+              </div>
+              <div class="ele">
+                <div class="icon"></div>
+                <p>Measuring to ensure updates are a success</p>
+              </div>
+              <div class="ele">
+                <div class="icon"></div>
+                <p>And much more!</p>
+              </div>
+            </div>
+            <!-- end list -->
+            
+          </div>
+          <!-- end text-->
+
+          <!-- start form -->
+          <form action="#">
+            <div class="input">
+              <label for="email">Email address</label>
+              <input type="email" placeholder="email@company.com" id="email" required>
+              <div class="validate">
+                <p id="warn">Please provide a valid email</p>
+              </div>
+            </div>
+            <button type="submit">Subscribe to monthly newsletter</button>
+          </form>
+          <!-- end form -->
+
+        </div>
+        <!-- end content -->
+        
+      </div>
+      <!-- end container -->
+
+    </div>
+    <!-- end newsletter -->
+    <div class="success">
+      <div class="container">
+        <div class="text">
+          <div class="icon">
+            
+          </div>
+          <h1>Thanks for subscribing!</h1>
+          <p>A confirmation email has been sent to <span id="uemail">madoaxel287@gmail.com</span>.
+            Please open it and click the button inside to confirm your subscription.</p>
+        </div>
+        <div class="button">
+          <button id="dismiss">Dismiss message</button>
+        </div>
+      </div>
+    </div>
+    
+      <script>
+        let input = document.querySelector('#email');
+        let warn = document.querySelector('.validate');
+        let submit_btn = document.querySelector('button[type="submit"]');
+        let newsletter = document.querySelector('.newsletter');
+        let success = document.querySelector('.success');
+        let uemail = document.querySelector('#uemail');
+        let success_img = document.querySelector('.success .icon');
+        let dismiss = document.querySelector('#dismiss');
+        console.log(warn);
+        submit_btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (input.value === '' || input.value.indexOf('@') === -1 || input.value.indexOf('.') === -1) {
+            warn.style.opacity = '1';
+            input.style.border = '1px solid hsl(0, 93%, 68%)';
+            // play shake animation each time
+            input.classList.add('shake');
+            setTimeout(() => {
+              input.classList.remove('shake');
+            }, 500);
+          } else {
+            warn.style.opacity = '0';
+            input.style.border = '1px solid hsl(231, 7%, 60%)';
+            newsletter.style.display = 'none';
+            success.style.display = 'flex';
+            uemail.innerHTML = input.value;
+            // play check animation
+            success_img.classList.add('check');
+            setTimeout(() => {
+              success_img.classList.remove('check');
+            }, 500);
+
+          }
+        });
+        dismiss.addEventListener('click', () => {
+          success.style.display = 'none';
+          newsletter.style.display = 'flex';
+        });
+      </script>
+    </body>
+  </html>
